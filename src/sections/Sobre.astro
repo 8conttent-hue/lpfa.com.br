@@ -1,0 +1,60 @@
+---
+// Sobre-G: Metric Oriented - Design baseado em estatísticas de impacto
+interface Stat { value: string; label: string; }
+interface Props {
+  title: string;
+  subtitle?: string;
+  desc?: string;
+  image: string;
+  stats: Stat[];
+  content?: string;
+}
+const { title, subtitle, desc, stats, content } = Astro.props;
+const description = subtitle || desc || '';
+
+const insights = [
+  { label: 'Análise de Comportamento', percent: '85%' },
+  { label: 'Interação Social', percent: '72%' },
+  { label: 'Suporte Familiar', percent: '94%' }
+];
+---
+<section class="py-24 bg-white overflow-hidden relative">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-20 items-start mb-32">
+       <div>
+          <span class="text-[10px] font-black uppercase text-primary tracking-[0.3em] mb-6 block">Pesquisa Quantitativa & Qualitativa</span>
+          <h1 class="text-5xl md:text-7xl font-black text-dark tracking-tighter mb-8 leading-none italic uppercase">{title}</h1>
+          <p class="text-xl text-gray-500 font-medium leading-relaxed italic mb-12">
+            "{description}"
+          </p>
+          <div class="space-y-8">
+             {insights?.map(item => (
+               <div class="group">
+                  <div class="flex justify-between items-end mb-3">
+                     <span class="text-sm font-black uppercase text-dark tracking-widest">{item.label}</span>
+                     <span class="text-2xl font-black text-primary">{item.percent}</span>
+                  </div>
+                  <div class="h-2 w-full bg-gray-50 rounded-full overflow-hidden">
+                     <div class="h-full bg-primary rounded-full group-hover:w-full transition-all duration-1000" style={`width: ${item.percent}`}></div>
+                  </div>
+               </div>
+             ))}
+          </div>
+       </div>
+
+       <!-- Featured Stat Grid -->
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+          {stats?.map((s, i) => (
+             <div class={`p-10 rounded-[3rem] border-2 border-gray-50 flex flex-col items-center justify-center text-center transition-all duration-500 hover:border-primary hover:shadow-2xl hover:-translate-y-2 group ${i === 0 ? 'bg-dark text-white' : 'bg-white'}`}>
+                <div class={`text-4xl md:text-6xl font-black mb-4 tracking-tighter i-0 group-hover:text-primary transition-colors`}>{s.value}</div>
+                <div class={`text-[10px] font-black uppercase tracking-widest ${i === 0 ? 'text-white/40' : 'text-gray-300'}`}>{s.label}</div>
+             </div>
+          ))}
+          <!-- Decorative Background -->
+          <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] font-black text-gray-50 uppercase tracking-tighter italic select-none">
+             METRICS
+          </div>
+       </div>
+    </div>
+  </div>
+</section>

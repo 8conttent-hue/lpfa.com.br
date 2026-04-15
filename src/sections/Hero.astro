@@ -1,0 +1,50 @@
+---
+// Hero-G: Floating Mockup - Design focado em produto/app
+interface Props {
+  title: string;
+  subtitle: string;
+  btnText: string;
+  btnLink: string;
+  bgImage: string;
+}
+const { title, subtitle, btnText, btnLink, bgImage } = Astro.props;
+---
+<section class="relative pt-20 lg:pt-32 bg-gray-50 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <div class="relative z-10 mb-16">
+      <h1 class="text-5xl md:text-7xl font-black text-dark mb-8 tracking-tighter">
+        {title}
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        {subtitle}
+      </p>
+      <a
+        href={btnLink}
+        class="inline-flex items-center px-10 py-5 bg-dark text-white font-black rounded-full hover:bg-primary transition-all shadow-2xl hover:translate-y-[-4px]"
+      >
+        {btnText}
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+
+    <!-- Floating Mockup -->
+    <div class="relative max-w-5xl mx-auto">
+      <div class="relative rounded-t-[2rem] lg:rounded-t-[3.5rem] overflow-hidden border-t-8 border-x-8 border-dark bg-white shadow-[0_-20px_50px_rgba(0,0,0,0.1)] translate-y-8 lg:translate-y-20 transition-transform duration-1000 hover:translate-y-4">
+        <img
+          src={bgImage}
+          class="w-full h-auto aspect-video object-cover"
+          alt="Dashboard Preview"
+        />
+        <!-- Glossy Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10"></div>
+      </div>
+      
+      <!-- Decorative background circles -->
+      <div class="absolute -top-1/2 -left-20 w-80 h-80 bg-primary/10 rounded-full blur-[80px]"></div>
+      <div class="absolute -top-1/4 -right-20 w-80 h-80 bg-accent/10 rounded-full blur-[80px]"></div>
+    </div>
+  </div>
+  
+  <!-- Section Divider -->
+  <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent"></div>
+</section>

@@ -1,0 +1,53 @@
+{
+  "name": "LPFA",
+  "slug": "lpfa.com.br",
+  "description": "Nós, da instituição Educacional IPFA, decidimos criar esse Blog como um meio de informação acessível por milhares de atletas em todo o Brasil. Vimos que a comunicação através do Blog se tornou fundamental para muitas empresas e multiplicadores de conteúdo, a muito tempo deixou de ser apenas entretenimento. Também temos como objetivo estabelecer uma relação de proximidade, onde as informações possam chegar com maior clareza e rapidez, priorizando sempre as opiniões sinceras dos fatos para o desenvolvimento de uma sociedade com mais educação, sensatez, justiça e solidariedade. Se queremos um futuro melhor no nosso país devemos plantar isso, e o tempo ideal pra fazer isso é justamente agora. A ação mais rápida a ser feita também é criarmos mídias de conteúdos agora! Apesar de tudo, de sermos conhecidos como instituição totalmente séria, muitas vezes passamos uma imagem errada. Nosso foco também será testar novos formatos de conteúdos, como vídeos animados, entretenimento em detrimento da informação e conteúdos visuais.",
+  "url": "https://lpfa.com.br",
+  "niche": "Esportes e Fitness",
+  "keywords": "Nos da instituicao Educacional IPFA decidimos criar esse Blog como um meio",
+  "email": "contato@lpfa.com.br",
+  "palette": "gold",
+  "colors": {
+    "primary": "#ca8a04",
+    "accent": "#92400e",
+    "dark": "#451a03"
+  },
+  "headerContrast": "light",
+  "font": "outfit",
+  "fontFamily": "'Outfit', sans-serif",
+  "fontUrl": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap",
+  "components": {
+    "header": "Header-E",
+    "hero": "Hero-G",
+    "features": "Features-C",
+    "about": "About-G",
+    "posts": "Posts-E",
+    "footer": "Footer-D",
+    "sobre": "Sobre-G",
+    "contato": "Contato-J"
+  },
+  "menu": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Sobre",
+      "href": "/sobre"
+    },
+    {
+      "label": "Contato",
+      "href": "/contato"
+    }
+  ],
+  "social": {
+    "instagram": "",
+    "facebook": "",
+    "twitter": "",
+    "youtube": ""
+  }
+}

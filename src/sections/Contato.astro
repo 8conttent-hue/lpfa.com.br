@@ -1,0 +1,52 @@
+---
+// Contato-J: Focus Form - Design de alta conversão para landing pages
+interface Props { title: string; subtitle?: string; desc?: string; content?: string;
+}
+const { title, subtitle, desc, content } = Astro.props;
+const description = subtitle || desc || '';
+---
+<section class="py-24 bg-white overflow-hidden flex flex-col items-center justify-center min-h-screen">
+  <div class="max-w-3xl mx-auto px-4 w-full">
+    <div class="text-center mb-16 space-y-6">
+       <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-[9px] font-black uppercase tracking-[0.4em] mb-4">
+          Direct Connect v2.0
+       </div>
+       <h1 class="text-5xl md:text-8xl font-black text-dark tracking-tighter uppercase leading-none italic">{title}</h1>
+      {content && <p class="text-gray-500 mt-4 leading-relaxed">{content}</p>}
+       <p class="text-xl md:text-2xl text-gray-400 font-medium leading-relaxed italic">"{description}"</p>
+    </div>
+
+    <!-- Centralized Focus Form -->
+    <div class="bg-gray-50 rounded-[4rem] p-10 md:p-16 border-2 border-gray-100 shadow-2xl relative group overflow-hidden">
+       <!-- Decoration element -->
+       <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-0 group-hover:bg-primary/30 transition-colors"></div>
+       
+       <form class="relative z-10 grid gap-8">
+          <div class="space-y-6">
+             <div class="group/inp">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 block group-focus-within/inp:text-primary transition-colors">Diga seu Nome</label>
+                <input type="text" class="w-full bg-white border border-gray-200 rounded-2xl p-5 text-dark focus:border-primary focus:outline-none focus:ring-8 focus:ring-primary/5 transition-all text-lg font-black shadow-sm" placeholder="Nome Completo" />
+             </div>
+             <div class="group/inp">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 block group-focus-within/inp:text-primary transition-colors">Seu E-mail de Contato</label>
+                <input type="email" class="w-full bg-white border border-gray-200 rounded-2xl p-5 text-dark focus:border-primary focus:outline-none focus:ring-8 focus:ring-primary/5 transition-all text-lg font-black shadow-sm" placeholder="contato@exemplo.com" />
+             </div>
+             <div class="group/inp">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 block group-focus-within/inp:text-primary transition-colors">Escreva com calma sua mensagem</label>
+                <textarea rows="5" class="w-full bg-white border border-gray-200 rounded-2xl p-5 text-dark focus:border-primary focus:outline-none focus:ring-8 focus:ring-primary/5 transition-all text-lg font-black shadow-sm resize-none" placeholder="Estou interessado em saber mais sobre..."></textarea>
+             </div>
+          </div>
+          <button class="w-full bg-dark text-white py-6 rounded-3xl font-black uppercase tracking-[0.5em] text-xs hover:bg-primary transition-all shadow-2xl shadow-dark/20 transform group-active:scale-95">
+             Conectar Agora
+          </button>
+       </form>
+    </div>
+
+    <!-- Security Badges -->
+    <div class="mt-12 flex items-center justify-center gap-12 grayscale opacity-30 group hover:opacity-100 transition-opacity">
+       <div class="text-[9px] font-black uppercase tracking-[0.3em]">SSL SECURED</div>
+       <div class="text-[9px] font-black uppercase tracking-[0.3em]">ENFERMAGEM BRASIL</div>
+       <div class="text-[9px] font-black uppercase tracking-[0.3em]">TEA RESEARCH</div>
+    </div>
+  </div>
+</section>

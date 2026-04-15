@@ -1,0 +1,63 @@
+---
+// About-G: Dark Mode Minimalist - Impacto visual e tipografia ousada
+interface Stat { value: string; label: string; }
+interface Props {
+  title: string;
+  desc: string;
+  image: string;
+  btnText: string;
+  btnLink: string;
+  stats: Stat[];
+}
+const { title, desc, stats } = Astro.props;
+---
+<section class="py-24 bg-dark text-white relative overflow-hidden">
+  <!-- Subtle Gradient Glow -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] -z-0"></div>
+  
+  <div class="max-w-6xl mx-auto px-4 relative z-10 w-full">
+    <div class="grid lg:grid-cols-12 gap-16 items-start">
+      
+      <!-- Esquerda: Título Gigante -->
+      <div class="lg:col-span-6">
+        <h2 class="text-5xl md:text-8xl font-black tracking-tighter leading-[0.8] mb-12 uppercase italic">
+          {title.split(' ')[0]}<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            {title.split(' ').slice(1).join(' ')}
+          </span>
+        </h2>
+        <div class="h-1 w-32 bg-primary mb-12"></div>
+      </div>
+
+      <!-- Direita: Descrição e Stats -->
+      <div class="lg:col-span-6 flex flex-col gap-12">
+        <p class="text-xl md:text-2xl text-white/50 leading-relaxed font-light italic">
+          "{desc}"
+        </p>
+
+        <!-- Dynamic Stats Row -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+          {stats.slice(0, 3).map((stat) => (
+            <div class="group">
+              <div class="text-4xl md:text-5xl font-black text-white mb-2 group-hover:text-primary transition-colors">
+                {stat.value}
+              </div>
+              <div class="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 group-hover:text-white transition-colors leading-none">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="pt-8">
+           <a href="#proximo" class="group inline-flex items-center gap-6">
+              <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+              </div>
+              <span class="text-xs font-black uppercase tracking-widest text-white group-hover:text-primary transition-colors">Descubra Mais</span>
+           </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

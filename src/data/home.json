@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "LPFA — Bem-vindo ao Blog LPFA",
+    "description": "Onde a informação e o esporte se encontram"
+  },
+  "hero": {
+    "title": "Bem-vindo ao Blog LPFA",
+    "subtitle": "Onde a informação e o esporte se encontram",
+    "btnText": "Saiba mais",
+    "bgImage": "/images/hero.jpg",
+    "btnLink": "/blog"
+  },
+  "features": {
+    "title": "Nossos Diferenciais",
+    "items": [
+      {
+        "icon": "📚",
+        "title": "Conteúdo de Qualidade",
+        "desc": "Produzimos artigos e vídeos informativos com foco no desenvolvimento de atletas."
+      },
+      {
+        "icon": "🤝",
+        "title": "Comunicação Clara",
+        "desc": "Estabelecemos uma relação de proximidade com os leitores, garantindo que as informações cheguem com clareza."
+      },
+      {
+        "icon": "🌱",
+        "title": "Compromisso Social",
+        "desc": "Focamos na educação, justiça e solidariedade para construir um futuro melhor para todos."
+      }
+    ]
+  },
+  "about": {
+    "title": "Sobre o LPFA",
+    "desc": "Nós, da instituição Educacional IPFA, criamos este Blog como uma plataforma acessível para compartilhar informações relevantes com atletas de todo o Brasil.",
+    "stats": [
+      {
+        "value": "10.000+",
+        "label": "Leitores mensais"
+      },
+      {
+        "value": "5",
+        "label": "Anos de experiência"
+      },
+      {
+        "value": "100+",
+        "label": "Artigos publicados"
+      }
+    ],
+    "image": "/images/about.jpg",
+    "btnText": "Saiba Mais",
+    "btnLink": "/sobre"
+  },
+  "posts": {
+    "title": "Últimos Artigos",
+    "limit": 3,
+    "btnText": "Ver Blog",
+    "btnLink": "/blog"
+  }
+}

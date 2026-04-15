@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Sobre Nós",
+    "description": "Conheça o LPFA"
+  },
+  "hero": {
+    "title": "Sobre Nós",
+    "subtitle": "Nós, da instituição Educacional IPFA, criamos este Blog como uma plataforma acessível para compartilhar informações relevantes com atletas de todo o Brasil."
+  },
+  "content": "O LPFA visa criar um espaço virtual onde a paixão por esportes se une à informação de qualidade. Aqui, você encontrará dicas úteis, notícias sobre eventos esportivos e um canal de comunicação efetivo entre atletas e a instituição.",
+  "mission": "Nossa missão é promover a educação e o desenvolvimento social por meio do esporte.",
+  "image": "/images/sobre.jpg",
+  "stats": [
+    {
+      "value": "500+",
+      "label": "Artigos"
+    },
+    {
+      "value": "100k+",
+      "label": "Leitores"
+    },
+    {
+      "value": "5",
+      "label": "Redatores"
+    }
+  ],
+  "team": []
+}

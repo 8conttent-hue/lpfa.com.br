@@ -1,0 +1,65 @@
+---
+// Footer-D: Wave border superior
+import siteConfig from '../data/siteConfig.json';
+const { name, menu = [] } = siteConfig as any;
+const year = new Date().getFullYear();
+---
+<footer class="relative bg-primary text-white">
+  <!-- Wave superior -->
+  <div class="absolute -top-1 left-0 right-0 overflow-hidden leading-none rotate-180">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-16 fill-primary">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1350,15 1440,30 L1440,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 pt-20 pb-10">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center font-black text-lg">
+            {name.charAt(0).toUpperCase()}
+          </div>
+          <span class="font-bold text-xl">{name}</span>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Conteúdo de qualidade, informação confiável e posts que fazem a diferença.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Navegação</h4>
+        <ul class="space-y-2.5 grid grid-cols-2">
+          {menu.map((item: any) => (
+            <li><a href={item.href} class="text-white/70 hover:text-white text-sm transition-colors">{item.label}</a></li>
+          ))}
+          <li><a href="/privacidade" class="text-white/70 hover:text-white text-sm transition-colors">Privacidade</a></li>
+          <li><a href="/termos" class="text-white/70 hover:text-white text-sm transition-colors">Termos</a></li>
+        </ul>
+      </div>
+
+      <!-- Blog -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Blog</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/blog" class="text-white/70 hover:text-white text-sm transition-colors">Ver Blog</a></li>
+          {menu.filter((item: any) => item.children?.length).map((item: any) => (
+            item.children.slice(0, 3).map((child: any) => (
+              <li><a href={child.href} class="text-white/70 hover:text-white text-sm transition-colors">{child.label}</a></li>
+            ))
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/20 mb-8"></div>
+
+    <!-- Bottom -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm">© {year} {name}. Todos os direitos reservados.</p>
+      <p class="text-white/40 text-xs">Feito com ♥ no Brasil</p>
+    </div>
+  </div>
+</footer>
