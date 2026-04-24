@@ -37,7 +37,7 @@ export interface Post extends PostMeta {
   body: string;
 }
 
-async function fetchDbPostsWithRetry(numericId: number, maxAttempts = 3): Promise<any[]> {
+async function fetchDbPostsWithRetry(siteId: string, maxAttempts = 3): Promise<any[]> {
   if (!supabase) return [];
   let lastError: any = null;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -45,12 +45,10 @@ async function fetchDbPostsWithRetry(numericId: number, maxAttempts = 3): Promis
     const timeout = setTimeout(() => ctrl.abort(), 7000);
     try {
       const { data: dbPosts, error: dbError } = await supabase
-        .from('posts')
-        // listagem não precisa do campo content (muito pesado)
-        .select('slug,title,description,pub_date,hero_image,category')
-        .eq('network_site_id', numericId)
-        .eq('is_published', true)
-        .order('pub_date', { ascending: false })
+        .from('network_posts')
+        .select('slug,title,meta_description,published_at,featured_image')
+        .eq('network_site_id', parseInt(siteId) || 0)
+        .order('published_at', { ascending: false })
         .abortSignal(ctrl.signal);
       if (!dbError) return dbPosts || [];
       lastError = dbError;
@@ -113,24 +111,23 @@ export async function getAllPosts(includeDrafts = false): Promise<PostMeta[]> {
     }
   } catch { /* ignore list error */ }
 
-  // 2. Carregar posts do Supabase (Se configurado)
-  const numericId = parseInt(networkId);
-  if (supabase && !isNaN(numericId) && numericId > 0) {
-    const cacheKey = `all:${numericId}`;
+  // 2. Carregar posts do Supabase (network_posts)
+  if (supabase && networkId && networkId !== '0') {
+    const cacheKey = `all:${networkId}`;
     try {
-      const dbPosts = await fetchDbPostsWithRetry(numericId, 3);
+      const dbPosts = await fetchDbPostsWithRetry(networkId, 3);
       POSTS_CACHE.set(cacheKey, { at: Date.now(), posts: dbPosts });
 
       if (dbPosts) {
-        dbPosts.forEach(p => {
+        dbPosts.forEach((p: any) => {
           if (!posts.find(local => local.slug === p.slug)) {
             posts.push({
               slug: p.slug,
               title: p.title,
-              description: p.description || '',
-              pubDate: p.pub_date,
-              heroImage: p.hero_image,
-              category: p.category || 'Geral',
+              description: p.meta_description || '',
+              pubDate: p.published_at,
+              heroImage: p.featured_image || '',
+              category: 'Geral',
               author: 'Equipe',
               draft: false,
               tags: [],
@@ -139,18 +136,18 @@ export async function getAllPosts(includeDrafts = false): Promise<PostMeta[]> {
         });
       }
     } catch (e) {
-      console.error('[Scaffold Supabase Error]', e);
+      console.error('[8links Supabase Error]', e);
       const cached = POSTS_CACHE.get(cacheKey);
       if (cached && (Date.now() - cached.at) <= CACHE_TTL_MS) {
-        cached.posts.forEach(p => {
+        cached.posts.forEach((p: any) => {
           if (!posts.find(local => local.slug === p.slug)) {
             posts.push({
               slug: p.slug,
               title: p.title,
-              description: p.description || '',
-              pubDate: p.pub_date,
-              heroImage: p.hero_image,
-              category: p.category || 'Geral',
+              description: p.meta_description || '',
+              pubDate: p.published_at,
+              heroImage: p.featured_image || '',
+              category: 'Geral',
               author: 'Equipe',
               draft: false,
               tags: [],
@@ -188,19 +185,17 @@ export async function getPost(slug: string): Promise<Post | null> {
     }
   } catch { /* pula para o banco */ }
 
-  // 2. Tentar Supabase
-  if (supabase && networkId !== '0') {
-    const numericId = parseInt(networkId);
-    const cacheKey = `all:${numericId}`;
+  // 2. Tentar Supabase (network_posts)
+  if (supabase && networkId && networkId !== '0') {
+    const cacheKey = `all:${networkId}`;
     try {
       const ctrl = new AbortController();
       const timeout = setTimeout(() => ctrl.abort(), 7000);
       const { data: p, error } = await supabase
-        .from('posts')
+        .from('network_posts')
         .select('*')
-        .eq('network_site_id', numericId)
+        .eq('network_site_id', parseInt(networkId) || 0)
         .eq('slug', slug)
-        .eq('is_published', true)
         .abortSignal(ctrl.signal)
         .single();
       clearTimeout(timeout);
@@ -210,10 +205,10 @@ export async function getPost(slug: string): Promise<Post | null> {
         return {
           slug: p.slug,
           title: p.title,
-          description: p.description || '',
-          pubDate: p.pub_date,
-          heroImage: p.hero_image,
-          category: p.category || 'Geral',
+          description: p.meta_description || '',
+          pubDate: p.published_at,
+          heroImage: p.featured_image || '',
+          category: 'Geral',
           author: 'Equipe',
           draft: false,
           tags: [],
@@ -228,10 +223,10 @@ export async function getPost(slug: string): Promise<Post | null> {
           return {
             slug: p.slug,
             title: p.title,
-            description: p.description || '',
-            pubDate: p.pub_date,
-            heroImage: p.hero_image,
-            category: p.category || 'Geral',
+            description: p.meta_description || '',
+            pubDate: p.published_at,
+            heroImage: p.featured_image || '',
+            category: 'Geral',
             author: 'Equipe',
             draft: false,
             tags: [],
