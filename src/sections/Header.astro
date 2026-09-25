@@ -1,29 +1,8 @@
 ---
 // Header-E: Modern Split - Logo centro, links divididos
 import siteConfig from '../data/siteConfig.json';
-import { getAllPosts } from '../lib/posts';
 
-const { name, menu: baseMenu = [] } = siteConfig;
-
-// Buscar categorias REAIS do banco de dados (SSR)
-const allPosts = await getAllPosts();
-const realCategories = [...new Set(allPosts.map(p => p.category))].filter(Boolean);
-
-// Injetar categorias reais no item "Blog" do menu
-const menu = baseMenu.map((item: any) => {
-  if (item.label.toLowerCase() === 'blog' || item.href === '/blog') {
-    return {
-      ...item,
-      children: realCategories.length
-        ? realCategories.map(cat => ({
-            label: cat,
-            href: `/categoria/${cat.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-')}`
-          }))
-        : undefined,
-    };
-  }
-  return item;
-});
+const { name, menu = [] } = siteConfig;
 
 // Divide o menu em duas partes para o desktop
 const half = Math.ceil(menu.length / 2);
