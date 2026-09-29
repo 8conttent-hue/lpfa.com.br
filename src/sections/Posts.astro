@@ -4,7 +4,7 @@ import { getPosts } from '../lib/posts';
 interface Props { title: string; limit: number; btnText: string; btnLink: string; }
 const { title, limit, btnText, btnLink } = Astro.props;
 
-const allPosts = await getPosts();
+const allPosts = await getPosts(100);
 const featuredPost = allPosts[0];
 const sidebarPosts = allPosts.slice(1, Math.min(limit, 4));
 ---
